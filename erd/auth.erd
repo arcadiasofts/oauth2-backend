@@ -4,8 +4,8 @@
   "settings": {
     "width": 3000,
     "height": 3000,
-    "scrollTop": -416,
-    "scrollLeft": -577,
+    "scrollTop": -580,
+    "scrollLeft": -415,
     "zoomLevel": 0.74,
     "show": 431,
     "database": 16,
@@ -61,6 +61,7 @@
         "comment": "유저",
         "columnIds": [
           "syRDIdHKES9lOVRIeCXlU",
+          "2wny2lrfZrVpdy7NMYvSv",
           "poUYs_N5_WfYbmXv0vdFy",
           "2gZPefheI3TvFWl9UVEUN",
           "ZQfsWTq0Eq9R-hfyUNbgg",
@@ -74,6 +75,7 @@
         ],
         "seqColumnIds": [
           "syRDIdHKES9lOVRIeCXlU",
+          "2wny2lrfZrVpdy7NMYvSv",
           "poUYs_N5_WfYbmXv0vdFy",
           "x5wzPSeicdMQWtiIVpDj5",
           "zrHNC8d2Ayoqe3qZPbNpk",
@@ -89,15 +91,15 @@
           "01ZrEu4sRh44045zEdVQB"
         ],
         "ui": {
-          "x": 207,
-          "y": 434,
+          "x": 213.7568,
+          "y": 417.7838,
           "zIndex": 2,
           "widthName": 60,
           "widthComment": 60,
           "color": ""
         },
         "meta": {
-          "updateAt": 1758522159046,
+          "updateAt": 1758546735535,
           "createAt": 1758485916802
         }
       },
@@ -614,7 +616,7 @@
         "name": "is-developer",
         "comment": "개발자 여부",
         "dataType": "BOOLEAN",
-        "default": "",
+        "default": "false",
         "options": 0,
         "ui": {
           "keys": 0,
@@ -624,7 +626,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1758486387219,
+          "updateAt": 1758546504834,
           "createAt": 1758486368950
         }
       },
@@ -734,7 +736,7 @@
         "name": "is_arcadia",
         "comment": "공식 서비스 여부",
         "dataType": "BOOLEAN",
-        "default": "",
+        "default": "false",
         "options": 0,
         "ui": {
           "keys": 0,
@@ -744,7 +746,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1758513392110,
+          "updateAt": 1758546501505,
           "createAt": 1758486528346
         }
       },
@@ -754,7 +756,7 @@
         "name": "is-company",
         "comment": "기업 여부",
         "dataType": "VARCHAR",
-        "default": "",
+        "default": "false",
         "options": 0,
         "ui": {
           "keys": 0,
@@ -764,7 +766,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1758486705009,
+          "updateAt": 1758546506242,
           "createAt": 1758486687247
         }
       },
@@ -991,20 +993,20 @@
       "ITi3CM9v1isJ_JBLmvKAN": {
         "id": "ITi3CM9v1isJ_JBLmvKAN",
         "tableId": "q4pwCmDmpnL1xI15rB-BF",
-        "name": "validate-on",
+        "name": "expired-on",
         "comment": "토큰 만료 일시",
         "dataType": "DATE",
         "default": "",
         "options": 8,
         "ui": {
           "keys": 0,
-          "widthName": 66,
+          "widthName": 64,
           "widthComment": 71,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1758487307916,
+          "updateAt": 1758545571299,
           "createAt": 1758487234961
         }
       },
@@ -1031,7 +1033,7 @@
       "xImv5eV9pT7l93EGWUeG2": {
         "id": "xImv5eV9pT7l93EGWUeG2",
         "tableId": "q4pwCmDmpnL1xI15rB-BF",
-        "name": "ip",
+        "name": "ipv4",
         "comment": "로그인 아이피",
         "dataType": "VARCHAR",
         "default": "",
@@ -1044,7 +1046,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1758487328935,
+          "updateAt": 1758545497062,
           "createAt": 1758487310963
         }
       },
@@ -1114,7 +1116,7 @@
         "name": "is_partnership",
         "comment": "재휴 서비스 여부",
         "dataType": "BOOLEAN",
-        "default": "",
+        "default": "false",
         "options": 0,
         "ui": {
           "keys": 0,
@@ -1124,7 +1126,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1758513419776,
+          "updateAt": 1758546502640,
           "createAt": 1758513406828
         }
       },
@@ -1447,6 +1449,26 @@
           "updateAt": 1758522695266,
           "createAt": 1758522679153
         }
+      },
+      "2wny2lrfZrVpdy7NMYvSv": {
+        "id": "2wny2lrfZrVpdy7NMYvSv",
+        "tableId": "N_0CgdjP-cfHXK59oue7Z",
+        "name": "authority",
+        "comment": "유저 권한",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1758546637331,
+          "createAt": 1758546572817
+        }
       }
     },
     "relationshipEntities": {
@@ -1460,8 +1482,8 @@
           "columnIds": [
             "syRDIdHKES9lOVRIeCXlU"
           ],
-          "x": 593,
-          "y": 514,
+          "x": 599.7568,
+          "y": 503.7838,
           "direction": 2
         },
         "end": {
@@ -1488,8 +1510,8 @@
           "columnIds": [
             "syRDIdHKES9lOVRIeCXlU"
           ],
-          "x": 400,
-          "y": 434,
+          "x": 406.7568,
+          "y": 417.7838,
           "direction": 4
         },
         "end": {
@@ -1572,8 +1594,8 @@
           "columnIds": [
             "syRDIdHKES9lOVRIeCXlU"
           ],
-          "x": 400,
-          "y": 754,
+          "x": 406.7568,
+          "y": 761.7837999999999,
           "direction": 8
         },
         "end": {
@@ -1581,7 +1603,7 @@
           "columnIds": [
             "zhdKUESpJ_oxq1zD784PD"
           ],
-          "x": 399.5,
+          "x": 398.5,
           "y": 981,
           "direction": 4
         },
@@ -1628,8 +1650,8 @@
           "columnIds": [
             "syRDIdHKES9lOVRIeCXlU"
           ],
-          "x": 593,
-          "y": 674,
+          "x": 599.7568,
+          "y": 675.7837999999999,
           "direction": 2
         },
         "end": {

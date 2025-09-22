@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { TypeormConfigService } from './providers/database/typeorm.config';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { AuthModule } from './api/auth/auth.module';
 
 @Module({
   imports: [
@@ -17,12 +18,16 @@ import { ThrottlerModule } from '@nestjs/throttler';
     ]),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env',
+      envFilePath:
+        process.env.NODE_ENV === 'dev'
+          ? '.env.development.local'
+          : '.env.production.local',
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useClass: TypeormConfigService,
     }),
+    AuthModule,
     OauthModule,
   ],
   controllers: [AppController],
