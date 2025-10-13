@@ -5,8 +5,10 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { RefreshTokenEntity } from './refresh-token';
+import { RefreshTokenEntity } from './refresh-token.entity';
 import { AgreedPolicyEntity } from '../policy/agreed.entity';
+import { OauthConnectInfoEntity } from '../oauth/connect.entity';
+import { PasskeyEntity } from './passkey.entity';
 
 @Entity('user')
 export class UserEntity {
@@ -24,7 +26,7 @@ export class UserEntity {
   @Index()
   nickname: string;
 
-  @Column()
+  @Column({ unique: true })
   @Index()
   email: string;
 
@@ -37,6 +39,9 @@ export class UserEntity {
   @Column({ nullable: true })
   name?: string;
 
+  @Column({ default: '/' })
+  profile: string;
+
   @Column({ nullable: true })
   @Index()
   tel?: string;
@@ -47,12 +52,18 @@ export class UserEntity {
   @Column({ default: false, nullable: true })
   is_developer?: boolean;
 
-  @Column({ default: false, nullable: true })
-  is_company?: string;
+  @Column({ nullable: true })
+  ci?: string;
+
+  @OneToMany(() => OauthConnectInfoEntity, (connect) => connect.user)
+  connects: OauthConnectInfoEntity[];
 
   @OneToMany(() => RefreshTokenEntity, (refresh) => refresh.user)
   refresh_token: RefreshTokenEntity[];
 
   @OneToMany(() => AgreedPolicyEntity, (agreed) => agreed.user)
   agreed_policy: AgreedPolicyEntity[];
+
+  @OneToMany(() => PasskeyEntity, (passkey) => passkey.user)
+  passkeys: PasskeyEntity[];
 }

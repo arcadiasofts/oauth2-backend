@@ -1,4 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { AgreedPolicyEntity } from './agreed.entity';
 
 @Entity('policy')
@@ -7,6 +13,7 @@ export class PolicyEntity {
   id: number;
 
   @Column()
+  @Index()
   title: string;
 
   @Column()
@@ -16,5 +23,5 @@ export class PolicyEntity {
   edited_at: Date;
 
   @OneToMany(() => AgreedPolicyEntity, (user) => user.policy)
-  agreed_user: AgreedPolicyEntity;
+  agreed_user: AgreedPolicyEntity[];
 }

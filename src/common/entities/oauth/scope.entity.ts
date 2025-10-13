@@ -5,7 +5,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { RequireScopeEntity } from './require-scope.entity';
+import { OauthRequireScopeEntity } from './require-scope.entity';
+import { AgreedScopeEntity } from './agreed-scope.entity';
 
 @Entity('oauth-scope')
 export class OauthScopeEntity {
@@ -22,6 +23,9 @@ export class OauthScopeEntity {
   @Column()
   value: string;
 
-  @OneToMany(() => RequireScopeEntity, (application) => application.scope)
-  require_application;
+  @OneToMany(() => OauthRequireScopeEntity, (application) => application.scope)
+  require_application: OauthRequireScopeEntity[];
+
+  @OneToMany(() => AgreedScopeEntity, (agreed) => agreed.scope)
+  agreed: AgreedScopeEntity[];
 }

@@ -1,0 +1,15 @@
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+
+export class VerifyEmailDto {
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+  @IsNotEmpty()
+  @IsString()
+  value?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  for: string;
+}

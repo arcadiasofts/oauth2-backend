@@ -20,13 +20,16 @@ export class RefreshTokenEntity {
   ipv4: string;
 
   @Column()
+  os: string;
+
+  @Column()
   device_id: string;
 
   @Column()
   created_at: string;
 
   @Column()
-  expired_on;
+  expired_on: Date;
 
   @ManyToOne(() => UserEntity, (user) => user, {
     onDelete: 'CASCADE',

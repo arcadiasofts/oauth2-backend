@@ -15,8 +15,10 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return main page', () => {
+      expect(appController.getHello()).toBe(
+        '<html><head><title>Arcadiasofts Account.</title></head><body><h1>Arcadiasofts Account System v.0.0.1</h1></body></html>',
+      );
     });
   });
 });

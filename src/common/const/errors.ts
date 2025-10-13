@@ -1,0 +1,16 @@
+export const errors = {
+  INVALID_CERTIFICATION: 'arcaa-001',
+  INVALID_USER: 'arcaa-002',
+  INVALID_CREDENTIAL: 'arcaa-003',
+  INVALID_TOKEN: 'arcaa-004',
+  REQUIRES_LOGIN: 'arcaa-005',
+  TIMEOUT: 'arcaa-006',
+  INVALID_CLIENT: 'arcaa-007',
+  NOTHING_TO_DO: 'arcaa-008',
+  INVALID_AUTHORIZATION_TYPE: 'arcaa-009',
+  INVALID_CONNECTION: 'arcaa-010',
+  REQUIRES_PERMISSIONS: 'arcaa-011',
+  INVALID_PASSWORD: 'arcaa-012',
+  INVALID_CHALLENGE: 'arcaa-013',
+  INVALID_PASSKEY: 'arcaa-014',
+};

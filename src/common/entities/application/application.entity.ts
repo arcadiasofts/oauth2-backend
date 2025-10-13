@@ -5,8 +5,11 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { RequireScopeEntity } from '../oauth/require-scope.entity';
+import { OauthRequireScopeEntity } from '../oauth/require-scope.entity';
 import { AgreedScopeEntity } from '../oauth/agreed-scope.entity';
+import { RedirectURIEntity } from './redirect-uri.entity';
+import { OauthConnectInfoEntity } from '../oauth/connect.entity';
+import { OauthRefreshEntity } from '../oauth/refresh.entity';
 
 @Entity('application')
 export class ApplicationEntity {
@@ -32,9 +35,15 @@ export class ApplicationEntity {
   @Column({ default: false })
   is_partnership: boolean;
 
-  @OneToMany(() => RequireScopeEntity, (require) => require.application)
-  require_scope: RequireScopeEntity;
+  @OneToMany(() => OauthRequireScopeEntity, (require) => require.application)
+  require_scope: OauthRequireScopeEntity[];
 
-  @OneToMany(() => AgreedScopeEntity, (agreed) => agreed.application)
-  connect: AgreedScopeEntity[];
+  @OneToMany(
+    () => OauthConnectInfoEntity,
+    (connection) => connection.application,
+  )
+  connects: OauthConnectInfoEntity[];
+
+  @OneToMany(() => RedirectURIEntity, (redirect) => redirect.application)
+  redirectURI: RedirectURIEntity[];
 }

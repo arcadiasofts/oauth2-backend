@@ -4,7 +4,7 @@ import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 
 @Injectable()
 export class TypeormConfigService implements TypeOrmOptionsFactory {
-  constructor(private configService: ConfigService) {}
+  constructor(private readonly configService: ConfigService) {}
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
@@ -15,7 +15,6 @@ export class TypeormConfigService implements TypeOrmOptionsFactory {
       password: this.configService.get<string>('DATABASE_PASSWORD'),
       port: this.configService.get<number>('DATABASE_PORT'),
       entities: [__dirname + '/../../**/**/**/*.entity.{js,ts}'],
-      // Data synchronization settings
       synchronize: true,
       extra: {
         timezone: 'Asia/Seoul',

@@ -1,16 +1,25 @@
-import { Entity, JoinTable, ManyToOne, PrimaryColumn } from 'typeorm';
-import { OauthConnectInfoEntity } from './connect.entity';
+import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { ApplicationEntity } from '../application/application.entity';
+import { OauthConnectInfoEntity } from './connect.entity';
+import { OauthScopeEntity } from './scope.entity';
 
-@Entity('agreed-scope')
+@Entity('oauth-agreed-scope')
 export class AgreedScopeEntity {
   @PrimaryColumn()
-  @ManyToOne(() => OauthConnectInfoEntity, (connect) => connect.agreed)
-  @JoinTable({ name: 'connection_id' })
+  connection_id: string;
+
+  @ManyToOne(() => OauthConnectInfoEntity, (connect) => connect.agreed, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'connection_id' })
   connection: OauthConnectInfoEntity;
 
   @PrimaryColumn()
-  @ManyToOne(() => ApplicationEntity, (application) => application.connect)
-  @JoinTable({ name: 'application_id' })
-  application: ApplicationEntity;
+  scope_id: number;
+
+  @ManyToOne(() => OauthScopeEntity, (scope) => scope, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'scope_id' })
+  scope: OauthScopeEntity;
 }
