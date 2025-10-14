@@ -8,7 +8,6 @@ import { TypeormConfigService } from './providers/database/typeorm.config';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule } from './api/auth/auth.module';
 import { CertModule } from './api/cert/cert.module';
-import { SmtpModule } from './api/smtp/smtp.module';
 import { VerifyModule } from './api/verify/verify.module';
 import { ApplicationModule } from './api/application/application.module';
 import { ImgModule } from './api/img/img.module';
@@ -41,7 +40,6 @@ import { UserModule } from './api/user/user.module';
     AuthModule,
     OauthModule,
     CertModule,
-    SmtpModule,
     VerifyModule,
     ApplicationModule,
     ImgModule,

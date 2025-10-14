@@ -41,4 +41,8 @@ export default class RegisterDto {
   @IsString()
   @IsOptional()
   address?: string;
+
+  @IsNotEmpty()
+  @IsString()
+  identity_verification_id: string;
 }

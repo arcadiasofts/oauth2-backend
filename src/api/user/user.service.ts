@@ -7,6 +7,11 @@ import { DataSource } from 'typeorm';
 export class UserService {
   constructor(private readonly dataSource: DataSource) {}
 
+  /**
+   * 이메일로 유저의 아이디를 가져옵니다.
+   * @param email 유저의 이메일을 입력받습니다.
+   * @returns 유저의 아이디를 리턴합니다.
+   */
   async getUserIdWithEmail(email: string) {
     const userRepository = this.dataSource.getRepository(UserEntity);
     const user = await userRepository.findOneBy({

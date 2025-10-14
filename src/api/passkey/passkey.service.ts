@@ -221,7 +221,7 @@ export class PasskeyService {
 
     // BUG FIX 4: 조건문 구문 오류 수정
     if (!user.passkeys || user.passkeys.length === 0) {
-      throw new NotFoundException('No passkeys found for this user.');
+      throw new NotFoundException(errors.INVALID_PASSKEY);
     }
 
     const options = await generateAuthenticationOptions({

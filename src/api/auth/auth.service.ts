@@ -3,6 +3,7 @@ import {
   ConflictException,
   Injectable,
   Logger,
+  NotAcceptableException,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -19,6 +20,8 @@ import { RefreshTokenEntity } from 'src/common/entities/user/refresh-token.entit
 import { RefreshTokenPayloadDto } from 'src/common/dto/auth/refresh-payload.dto';
 import { JwtRefreshDto } from 'src/common/dto/auth/refresh.dto';
 import bcrypt from 'bcrypt';
+import axios from 'axios';
+import { Aes256 } from 'src/common/util/aes-256-encrypt';
 
 @Injectable()
 export class AuthService {
@@ -47,10 +50,47 @@ export class AuthService {
     const user = userRepository.create({
       ...registerDto,
     });
+    const usernameRegex = /^[\p{L}\p{N}_-]{2,30}$/u;
+    if (!usernameRegex.test(registerDto.nickname))
+      throw new NotAcceptableException(errors.INVALID_USERNAME);
+    const handleRegex = /^[a-zA-Z0-9._]{1,20}$/;
+    if (!handleRegex.test(registerDto.handle))
+      throw new NotAcceptableException(errors.INVALID_HANDLE);
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(registerDto.password, salt);
     user.password = hashedPassword;
+    const verificationResponse = await axios.get(
+      `https://api.portone.io/identity-verifications/${encodeURIComponent(registerDto.identity_verification_id)}`,
+      {
+        headers: {
+          Authorization: `PortOne ${this.configService.get<string>('PORTONE_API_SECRET')}`,
+        },
+      },
+    );
+    const identityVerification: PortoneIdentityResponseType =
+      await verificationResponse.data;
+    user.tel = identityVerification.verifiedCustomer.phoneNumber;
+    user.gender = identityVerification.verifiedCustomer.gender;
+    const aes256 = new Aes256(
+      this.configService.get<string>('ACCOUNT_CI_KEY') || '',
+    );
+    const encryptedCI = aes256.encrypt(
+      identityVerification.verifiedCustomer.ci,
+    );
+    user.ci = encryptedCI;
+    user.di = identityVerification.verifiedCustomer.di;
+    const birthdatePart =
+      identityVerification.verifiedCustomer.birthDate.split('-');
+    const birthdate = new Date();
+    birthdate.setFullYear(parseInt(birthdatePart[0]));
+    birthdate.setMonth(parseInt(birthdatePart[1]) - 1);
+    birthdate.setDate(parseInt(birthdatePart[2]));
+    this.logger.debug(identityVerification.verifiedCustomer.birthDate);
+    if (2025 < birthdate.getFullYear() + 14)
+      throw new NotAcceptableException(errors.TOO_YOUNG);
+    user.birthdate = birthdate;
+    user.name = identityVerification.verifiedCustomer.name;
     await userRepository.save(user);
     this.logger.log(`Created new user data : ${user.nickname}.`);
     return { registered: true };

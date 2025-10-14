@@ -43,6 +43,9 @@ export class UserEntity {
   profile: string;
 
   @Column({ nullable: true })
+  birthdate: Date;
+
+  @Column({ nullable: true })
   @Index()
   tel?: string;
 
@@ -54,6 +57,9 @@ export class UserEntity {
 
   @Column({ nullable: true })
   ci?: string;
+
+  @Column({ nullable: true })
+  di?: string;
 
   @OneToMany(() => OauthConnectInfoEntity, (connect) => connect.user)
   connects: OauthConnectInfoEntity[];

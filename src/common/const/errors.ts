@@ -13,4 +13,8 @@ export const errors = {
   INVALID_PASSWORD: 'arcaa-012',
   INVALID_CHALLENGE: 'arcaa-013',
   INVALID_PASSKEY: 'arcaa-014',
+  TOO_YOUNG: 'arcaa-015',
+  INVALID_USERNAME: 'arcaa-016',
+  INVALID_HANDLE: 'arcaa-017',
+  ALREADY_REGISTERED: 'arcaa-018',
 };
